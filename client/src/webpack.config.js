@@ -1,3 +1,5 @@
+var webpack = require('webpack');
+
 module.exports = {
   entry: {
     javascript: "./app/js/app.jsx",
@@ -10,6 +12,13 @@ module.exports = {
   resolve: {
     extensions: ["", ".webpack.js", ".web.js", ".js", ".jsx"]
   },
+  plugins: [
+    new webpack.DefinePlugin({
+      'process.env': {
+        'API_URL': JSON.stringify(process.env.API_URL || 'http://localhost:8080')
+      }
+    })
+  ],
   module: {
     loaders: [
       {
