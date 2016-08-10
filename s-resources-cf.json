@@ -45,7 +45,7 @@
               "Action": [
                 "*"
               ],
-              "Resource": "arn:aws:dynamodb:${region}:*:table/${project}-users-${stage}"
+              "Resource": "arn:aws:dynamodb:${region}:*:table/${project}-*-${stage}"
             },
             {
               "Effect": "Allow",
@@ -84,6 +84,29 @@
           "WriteCapacityUnits": 1
         },
         "TableName": "${project}-users-${stage}"
+      }
+    },
+    "DynamoDbGroupsTable": {
+      "Type": "AWS::DynamoDB::Table",
+      "DeletionPolicy": "Retain",
+      "Properties": {
+        "AttributeDefinitions": [
+          {
+            "AttributeName": "name",
+            "AttributeType": "S"
+          }
+        ],
+        "KeySchema": [
+          {
+            "AttributeName": "name",
+            "KeyType": "HASH"
+          }
+        ],
+        "ProvisionedThroughput": {
+          "ReadCapacityUnits": 1,
+          "WriteCapacityUnits": 1
+        },
+        "TableName": "${project}-groups-${stage}"
       }
     }
   },
