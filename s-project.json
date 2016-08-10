@@ -6,7 +6,7 @@
       "region": "${meta_bucket_region}"
     },
     "client": {
-      "bucketName": "boilerplate.${stage}.${region}"
+      "bucketName": "${app.bucket.prefix}.${stage}.${region}"
     },
     "cors": {
       "allowOrigin": "*",
